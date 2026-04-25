@@ -7,5 +7,5 @@ app.get("/user",(req,res)=>{
 
 
 app.listen(3000,()=>{
-    console.log("Server running in the port of :3000")
+    console.log("Server running in the p njojojort of :3000")
 })
