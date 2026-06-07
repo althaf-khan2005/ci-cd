@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function App() {
   return (
-    <div style={{ margin: 0, padding: 0, fontFamily: "'Segoe UI', sans-serif", background: 'linear-gradient(135deg, #0a192f, #112240, #1a365d)', minHeight: '100vh', color: '#fff' }}>
+    <div style={{ margin: 0, padding: 0, fontFamily: "'Segoe UI', sans-serif", background: 'linear-gradient(135deg, #000000, #0d0d0d, #1a1a1a)', minHeight: '100vh', color: '#fff' }}>
       {/* Hero Section */}
       <div style={{ textAlign: 'center', padding: '4rem 1rem 2rem' }}>
         <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style={{ marginBottom: '1.5rem' }}>
@@ -55,16 +55,21 @@ export default function App() {
 }
 
 function PipelineStep({ icon, label, color }) {
+  const [hovered, setHovered] = React.useState(false)
   return (
-    <div style={{ background: 'rgba(255,255,255,0.05)', border: `1px solid ${color}`, borderRadius: '10px', padding: '0.8rem 1rem', textAlign: 'center', minWidth: '80px' }}>
-      <div style={{ fontSize: '1.5rem' }}>{icon}</div>
-      <div style={{ fontSize: '0.7rem', color, marginTop: '0.3rem', fontWeight: 'bold' }}>{label}</div>
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ background: hovered ? `${color}22` : 'rgba(255,255,255,0.03)', border: `1px solid ${hovered ? color : color + '55'}`, borderRadius: '12px', padding: '1rem 1.2rem', textAlign: 'center', minWidth: '90px', transform: hovered ? 'translateY(-5px) scale(1.05)' : 'none', transition: 'all 0.3s ease', cursor: 'pointer', boxShadow: hovered ? `0 8px 25px ${color}44` : 'none' }}
+    >
+      <div style={{ fontSize: '1.8rem' }}>{icon}</div>
+      <div style={{ fontSize: '0.75rem', color, marginTop: '0.4rem', fontWeight: 'bold', letterSpacing: '0.5px' }}>{label}</div>
     </div>
   )
 }
 
 function Arrow() {
-  return <span style={{ color: '#00d4ff', fontSize: '1.2rem' }}>→</span>
+  return <span style={{ color: '#00d4ff', fontSize: '1.5rem', opacity: 0.7 }}>→</span>
 }
 
 function Card({ icon, title, desc, color }) {
