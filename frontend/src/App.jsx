@@ -78,11 +78,11 @@ function Card({ icon, title, desc, color }) {
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{ background: hovered ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${hovered ? color : color + '33'}`, borderRadius: '12px', padding: '1.5rem', width: '240px', textAlign: 'center', backdropFilter: 'blur(10px)', transform: hovered ? 'translateY(-8px) scale(1.02)' : 'none', transition: 'all 0.3s ease', cursor: 'pointer', boxShadow: hovered ? `0 10px 30px ${color}33` : 'none' }}
+      style={{ background: hovered ? `${color}15` : 'rgba(255,255,255,0.03)', border: `1px solid ${hovered ? color : color + '44'}`, borderRadius: '12px', padding: '1.5rem', width: '240px', textAlign: 'center', transform: hovered ? 'translateY(-8px) scale(1.02)' : 'none', transition: 'all 0.3s ease', cursor: 'pointer', boxShadow: hovered ? `0 10px 30px ${color}33` : 'none' }}
     >
       <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{icon}</div>
-      <h3 style={{ margin: '0.3rem 0', color }}>{title}</h3>
-      <p style={{ margin: 0, color: '#999', fontSize: '0.9rem' }}>{desc}</p>
+      <h3 style={{ margin: '0.3rem 0', color, letterSpacing: '0.5px' }}>{title}</h3>
+      <p style={{ margin: 0, color: '#888', fontSize: '0.85rem' }}>{desc}</p>
     </div>
   )
 }
