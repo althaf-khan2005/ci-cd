@@ -23,7 +23,7 @@ jobs:
         run: cd frontend && npm ci
 
       - name : Build the application
-        run : cd frontend && npm i && npm run build
+        run : cd frontend && npm ci && npm run build
 
   connect-to-the-aws:
 
