@@ -20,7 +20,7 @@ jobs:
          node-version : 20
 
       - name : Install packages
-        run: npm ci
+        run: cd frontend && npm ci
 
       - name : Build the application
         run : cd frontend && npm ci && npm run build
