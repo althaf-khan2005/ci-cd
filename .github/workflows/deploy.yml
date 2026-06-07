@@ -12,10 +12,10 @@ jobs:
     steps:
 
       - name : Downolod from the repo
-        uses : action/checkout@v4
+        uses : actions/checkout@v4
 
       - name : Downolod the node.js
-        uses : action/setup-node@v4
+        uses : actions/setup-node@v4
         with :
          node-version : 20
 
