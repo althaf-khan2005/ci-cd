@@ -5,7 +5,6 @@ export default function App() {
     <div style={{ margin: 0, padding: 0, fontFamily: "'Segoe UI', sans-serif", background: 'linear-gradient(135deg, #0a192f, #112240, #1a365d)', minHeight: '100vh', color: '#fff' }}>
       {/* Hero Section */}
       <div style={{ textAlign: 'center', padding: '4rem 1rem 2rem' }}>
-        {/* DevOps Icon */}
         <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style={{ marginBottom: '1.5rem' }}>
           <circle cx="60" cy="60" r="55" stroke="#00d4ff" strokeWidth="3" fill="none" />
           <path d="M60 20 L60 100 M20 60 L100 60" stroke="#00d4ff" strokeWidth="2" opacity="0.3" />
@@ -19,22 +18,53 @@ export default function App() {
         </p>
       </div>
 
+      {/* Pipeline Section */}
+      <div style={{ maxWidth: '900px', margin: '2rem auto', padding: '0 1rem' }}>
+        <h2 style={{ textAlign: 'center', color: '#00d4ff', marginBottom: '2rem' }}>⚡ CI/CD Pipeline</h2>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <PipelineStep icon="📥" label="Git Push" color="#7b2ff7" />
+          <Arrow />
+          <PipelineStep icon="🔍" label="Checkout" color="#00d4ff" />
+          <Arrow />
+          <PipelineStep icon="📦" label="Install" color="#f5a623" />
+          <Arrow />
+          <PipelineStep icon="🔨" label="Build" color="#e74c3c" />
+          <Arrow />
+          <PipelineStep icon="☁️" label="S3 Deploy" color="#ff9900" />
+          <Arrow />
+          <PipelineStep icon="🌐" label="CloudFront" color="#2ecc71" />
+        </div>
+      </div>
+
       {/* Cards Section */}
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.5rem', padding: '2rem 1rem', maxWidth: '900px', margin: '0 auto' }}>
         <Card icon="🐳" title="Docker" desc="Containerized deployments" color="#0db7ed" />
-        <Card icon="⚙️" title="CI/CD" desc="Automated pipelines" color="#f5a623" />
-        <Card icon="☁️" title="AWS Cloud" desc="Scalable infrastructure" color="#ff9900" />
-        <Card icon="📊" title="Monitoring" desc="Observability & alerts" color="#e74c3c" />
-        <Card icon="🔒" title="Security" desc="DevSecOps practices" color="#2ecc71" />
+        <Card icon="⚙️" title="GitHub Actions" desc="Automated CI/CD pipeline" color="#f5a623" />
+        <Card icon="☁️" title="AWS S3" desc="Static site hosting" color="#ff9900" />
+        <Card icon="🌐" title="CloudFront" desc="CDN & caching" color="#2ecc71" />
+        <Card icon="🔒" title="Security" desc="DevSecOps practices" color="#e74c3c" />
         <Card icon="🚀" title="Kubernetes" desc="Orchestration at scale" color="#326ce5" />
       </div>
 
       {/* Footer */}
       <p style={{ textAlign: 'center', color: '#555', padding: '2rem', fontSize: '0.85rem' }}>
-        Built with React + Vite | Deployed via GitHub Actions
+        Built with React + Vite | Deployed via GitHub Actions → S3 → CloudFront
       </p>
     </div>
   )
+}
+
+function PipelineStep({ icon, label, color }) {
+  return (
+    <div style={{ background: 'rgba(255,255,255,0.05)', border: `1px solid ${color}`, borderRadius: '10px', padding: '0.8rem 1rem', textAlign: 'center', minWidth: '80px' }}>
+      <div style={{ fontSize: '1.5rem' }}>{icon}</div>
+      <div style={{ fontSize: '0.7rem', color, marginTop: '0.3rem', fontWeight: 'bold' }}>{label}</div>
+    </div>
+  )
+}
+
+function Arrow() {
+  return <span style={{ color: '#00d4ff', fontSize: '1.2rem' }}>→</span>
 }
 
 function Card({ icon, title, desc, color }) {
