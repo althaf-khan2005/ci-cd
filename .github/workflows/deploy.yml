@@ -14,15 +14,38 @@ jobs:
       - name : Downolod from the repo
         uses : actions/checkout@v4
 
-      - name : Downolod the node.js
+      - name : Setup node.js
         uses : actions/setup-node@v4
         with :
          node-version : 20
 
       - name : Install packages
-        run: npm i
+        run: cd frontend && npm ci
 
       - name : Build the application
         run : cd frontend && npm i && npm run build
+
+  connect-to-the-aws:
+
+    needs: build-the-application-module
+
+    runs-on : ubuntu-latest
+
+    steps :
+
+      - name : Configure Aws
+        uses : aws-actions/configure-aws-credentials@v4
+        with:
+          aws-acces-key : ${{secrets.aws_access_key_id }}
+          aws-secert-key : ${{secrets.aws_secret_key}}
+          aws_region : ${{secrets.AWS_REGION}}
+
+      - name : upload to s3
+        run : |
+         cd frontend /dist
+           aws s3 sync  . s3://${{secrets.aws_buk}}
+
+
+     
 
 
