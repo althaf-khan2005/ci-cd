@@ -23,6 +23,6 @@ jobs:
         run: npm i
 
       - name : Build the application
-        run : npm run build
+        run : cd frontend && npm i && npm run build
 
 
