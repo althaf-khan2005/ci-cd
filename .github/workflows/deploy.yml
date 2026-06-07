@@ -36,10 +36,9 @@ jobs:
       - name : Configure Aws
         uses : aws-actions/configure-aws-credentials@v4
         with:
-          aws-acces-key : ${{secrets.ACCES_KEY }}
-          aws-secert-key : ${{secrets.SECRET_KEY}}
-          aws_region : ${{secrets.REGION}}
-
+          aws-access-key-id : ${{secrets.ACCES_KEY }}
+          aws-secret-access-key : ${{secrets.SECRET_KEY}}
+          aws-region : ${{secrets.REGION}}
       - name : upload to s3
         run : |
          cd frontend /dist
