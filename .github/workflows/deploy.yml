@@ -41,7 +41,7 @@ jobs:
           aws-region : ${{secrets.REGION}}
       - name : upload to s3
         run : |
-         cd frontend /dist
+         cd frontend/dist
            aws s3 sync  . s3://${{secrets.S3_BUCKET}}
 
 
