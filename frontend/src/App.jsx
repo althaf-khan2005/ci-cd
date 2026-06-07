@@ -9,7 +9,7 @@ export default function App() {
         <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style={{ marginBottom: '1.5rem' }}>
           <circle cx="60" cy="60" r="55" stroke="#00d4ff" strokeWidth="3" fill="none" />
           <path d="M60 20 L60 100 M20 60 L100 60" stroke="#00d4ff" strokeWidth="2" opacity="0.3" />
-          <text x="60" y="68" textAnchor="middle" fill="#00d4ff" fontSize="28" fontWeight="bold">∞</text>
+          <text x="60" y="69" textAnchor="middle" fill="#00d4ff" fontSize="28" fontWeight="bold">∞</text>
         </svg>
         <h1 style={{ fontSize: '3rem', margin: '0.5rem 0', background: 'linear-gradient(90deg, #00d4ff, #7b2ff7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           DevOps Engineer
