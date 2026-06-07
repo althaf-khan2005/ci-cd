@@ -1,50 +1,51 @@
-name : ci/cd pipeline
+name: ci/cd pipeline
 
 on:
-  push :
-    branches : ["main"]
+  push:
+    branches: ["main"]
 
 jobs:
   build-the-application-module:
-
-    runs-on : ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
+      - name: Download from the repo
+        uses: actions/checkout@v4
 
-      - name : Downolod from the repo
-        uses : actions/checkout@v4
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name : Setup node.js
-        uses : actions/setup-node@v4
-        with :
-         node-version : 20
-
-      - name : Install packages
+      - name: Install packages
         run: cd frontend && npm ci
 
-      - name : Build the application
-        run : cd frontend && npm ci && npm run build
+      - name: Build the application
+        run: cd frontend && npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend/dist
 
   connect-to-the-aws:
-
     needs: build-the-application-module
+    runs-on: ubuntu-latest
 
-    runs-on : ubuntu-latest
-
-    steps :
-
-      - name : Configure Aws
-        uses : aws-actions/configure-aws-credentials@v4
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
         with:
-          aws-access-key-id : ${{secrets.ACCES_KEY }}
-          aws-secret-access-key : ${{secrets.SECRET_KEY}}
-          aws-region : ${{secrets.REGION}}
-      - name : upload to s3
-        run : |
-         cd frontend/dist
-           aws s3 sync  . s3://${{secrets.S3_BUCKET}}
+          name: frontend-dist
+          path: dist
 
+      - name: Configure Aws
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.ACCES_KEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_KEY }}
+          aws-region: ${{ secrets.REGION }}
 
-     
-
-
+      - name: Upload to S3
+        run: aws s3 sync dist s3://${{ secrets.S3_BUCKET }} 
